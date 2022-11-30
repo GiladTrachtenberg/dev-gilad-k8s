@@ -21,6 +21,10 @@ jobs:
     - name: Pull docker image 
       run: docker pull $IMAGE_NAME
 
+    - uses: google-github-actions/auth@v1
+      with:
+         service_account: github-actions@gilad-dev-k8s.iam.gserviceaccount.com
+
     - name: Configure Docker Client
       run: |-
         gcloud auth configure-docker --quiet
