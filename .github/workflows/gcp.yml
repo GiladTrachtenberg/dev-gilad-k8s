@@ -15,8 +15,6 @@ jobs:
 
     - uses: google-github-actions/setup-gcloud@v1
       with:
-          service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
-          project_id: ${{ env.PROJECT_ID }}
           export_default_credentials: true
     - name: Pull docker image 
       run: docker pull $IMAGE_NAME
@@ -24,6 +22,7 @@ jobs:
     - uses: google-github-actions/auth@v1
       with:
          service_account: github-actions@gilad-dev-k8s.iam.gserviceaccount.com
+         credentials_json: ${{ secrets.SERVICE_ACCOUNT_KEY}}
 
     - name: Configure Docker Client
       run: |-
