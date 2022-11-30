@@ -7,7 +7,7 @@ jobs:
     name: Pull image and push it to GCR (to test for errors)
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: demo-crp
+      IMAGE_NAME: pwstaging/demo-crm
       PROJECT_ID: gilad-dev-k8s
     steps:
     - name: Checkout
@@ -19,7 +19,7 @@ jobs:
           project_id: ${{ env.PROJECT_ID }}
           export_default_credentials: true
     - name: Pull docker image 
-      run: docker pull pwstaging/demo-crm:latest
+      run: docker pull $IMAGE_NAME
 
     - name: Configure Docker Client
       run: |-
@@ -29,9 +29,7 @@ jobs:
       env: 
         GIT_TAG: v0.1.0
       run: |-
-          docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
           docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
-          docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
           docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
 
 
