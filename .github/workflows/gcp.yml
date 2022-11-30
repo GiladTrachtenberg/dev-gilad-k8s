@@ -29,12 +29,12 @@ jobs:
       env: 
         GIT_TAG: v0.1.0
       run: |-
-          docker tag $IMAGE_NAME:latest me.gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
-          docker push me.gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
+          docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
+          docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
 
 
 
-#name: Terraform Automation
+#name: Terraform Automate
 #on:
   #push:
     #branches: [ main ]
